@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family: "Lato", sans-serif;
+}
+
+.hamburger-icon {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  display: block;
+}
+
+.hamburger-icon .line {
+  height: 4px;
+  border-radius: 5px;
+  display: block;
+  transition: all 800ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.line-1 {
+  margin-top: 0;
+}
+
+.hamburger-icon .line-1 {
+  width: 30px;
+}
+
+.hamburger-icon .line-2 {
+  width: 40px;
+}
+
+.hamburger-icon .line-3 {
+  width: 20px;
+}
+
+.hamburger-icon:hover .line {
+  width: 40px;
+}
+
+/* [1] The container */
+.img-hover-zoom {
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform 0.3s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Views Animation */
+::view-transition-old(root) {
+  animation: fade-and-scale-out 0.5s ease-in-out 1 forwards;
+}
+::view-transition-new(root) {
+  animation: fade-and-scale-in 10s ease-in-out 1 forwards;
+}
+
+@keyframes fade-and-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fade-and-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+/* Second animation */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+/* connect dialogs ic */
+.dark .dialog-container {
+  background: #180d05 !important;
+}
+
+.dark .button-styles:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.connect-button {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  justify-content: center;
+  background-color: black !important;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.connect-button:hover {
+  transform: scale(1) !important;
+  transition: all 0.4s;
+}
+
+#__react-alert__ div {
+  z-index: 9999 !important;
+}
+
+#__react-alert__ div div div {
+  width: auto !important;
+}
+
+#react-qrcode-logo {
+  border-radius: 20px;
+}
+/* YourComponent.css */
+
+.your-component-class {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 70%;
+}
+
+@media (max-width: 480px) {
+  .your-component-class {
+    background-size: cover;
+    min-height: 70vh;
+    background-position: center;
+  }
+}
+
+
+.paypal-button.paypal-button-shape-rect {
+  border-radius: 0 !important;
+}
+
+.paypal-button.paypal-button-color-black, .paypal-button-row.paypal-button-color-black .menu-button {
+  background: #cf2f2e !important;
+}

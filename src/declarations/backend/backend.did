@@ -1,0 +1,640 @@
+type WishlistItem = 
+ record {
+   id: WishlistId__1;
+   "principal": principal;
+   product_slug: text;
+   time_created: Time;
+   time_updated: Time;
+ };
+type WishlistId__1 = text;
+type WishlistId = text;
+type VideoId = nat;
+type Video = 
+ record {
+   course: text;
+   description: text;
+   id: VideoId;
+   img1: text;
+   slug: text;
+   status: text;
+   time_created: Time;
+   time_updated: Time;
+   title: text;
+   video_url: text;
+ };
+type UserProduct = 
+ record {
+   category: SlugId__1;
+   description: text;
+   img1: text;
+   img2: text;
+   img3: text;
+   inventory: nat8;
+   price: float64;
+   status: text;
+   title: text;
+ };
+type UserId__1 = text;
+type UserId = text;
+type UserContact = 
+ record {
+   email: text;
+   message: text;
+   name: text;
+   read: bool;
+ };
+type User = 
+ record {
+   discord: text;
+   email: text;
+   id: UserId__1;
+   time_created: Time;
+   time_updated: Time;
+   twitter: text;
+ };
+type UpdateWishlistItemError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+   WishlistItemNotFound;
+ };
+type UpdateVideoError = 
+ variant {
+   EmptyTitle;
+   UserNotAdmin;
+   UserNotAuthenticated;
+   VideoNotFound;
+ };
+type UpdateUserError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+   UserNotFound;
+ };
+type UpdateProductError = 
+ variant {
+   EmptyTitle;
+   ProductNotFound;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type UpdateOrderError = 
+ variant {
+   OrderNotFound;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type UpdateCourseError = 
+ variant {
+   CourseNotFound;
+   EmptyTitle;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type UpdateContactError = 
+ variant {
+   ContactNotFound;
+   EmptyEmail;
+   EmptyMessage;
+   EmptyName;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type UpdateCategoryError = 
+ variant {
+   CategoryNotFound;
+   EmptyName;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type UpdateCartItemsError = 
+ variant {
+   CartItemNotFound;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type Time = int;
+type StreamingStrategy = variant {
+                           Callback:
+                            record {
+                              callback: StreamingCallback;
+                              token: StreamingCallbackToken;
+                            };};
+type StreamingCallbackToken = 
+ record {
+   content_encoding: text;
+   index: nat;
+   key: text;
+ };
+type StreamingCallbackResponse = 
+ record {
+   body: blob;
+   token: opt StreamingCallbackToken;
+ };
+type StreamingCallback = func (StreamingCallbackToken) ->
+                          (StreamingCallbackResponse) query;
+type SlugId__1 = text;
+type SlugId = text;
+type ShippingAddress = 
+ record {
+   city: text;
+   country: text;
+   firstName: text;
+   lastName: text;
+   mail: text;
+   mobile: text;
+   postCode: text;
+   state: text;
+   street: text;
+ };
+type Result_9 = 
+ variant {
+   err: GetVideoError;
+   ok: Video;
+ };
+type Result_8 = 
+ variant {
+   err: UpdateCartItemsError;
+   ok: CartItem;
+ };
+type Result_7 = 
+ variant {
+   err: UpdateCategoryError;
+   ok: Category;
+ };
+type Result_6 = 
+ variant {
+   err: UpdateContactError;
+   ok: Contact;
+ };
+type Result_5 = 
+ variant {
+   err: UpdateCourseError;
+   ok: Course;
+ };
+type Result_4 = 
+ variant {
+   err: UpdateProductError;
+   ok: Product;
+ };
+type Result_33 = 
+ variant {
+   err: CreateCartItemsError;
+   ok: CartItem;
+ };
+type Result_32 = 
+ variant {
+   err: CreateWishlistItemError;
+   ok: WishlistItem;
+ };
+type Result_31 = 
+ variant {
+   err: CreateCategoryError;
+   ok: Category;
+ };
+type Result_30 = 
+ variant {
+   err: CreateContactError;
+   ok: Contact;
+ };
+type Result_3 = 
+ variant {
+   err: UpdateOrderError;
+   ok: Order;
+ };
+type Result_29 = 
+ variant {
+   err: CreateCourseError;
+   ok: Course;
+ };
+type Result_28 = 
+ variant {
+   err: CreateProductError;
+   ok: Product;
+ };
+type Result_27 = 
+ variant {
+   err: CreateUserError;
+   ok: User;
+ };
+type Result_26 = 
+ variant {
+   err: CreateVideoError;
+   ok: Video;
+ };
+type Result_25 = 
+ variant {
+   err: DeleteCartItemsError;
+   ok;
+ };
+type Result_24 = 
+ variant {
+   err: DeleteCategoryError;
+   ok;
+ };
+type Result_23 = 
+ variant {
+   err: DeleteContactError;
+   ok;
+ };
+type Result_22 = 
+ variant {
+   err: DeleteCourseError;
+   ok;
+ };
+type Result_21 = 
+ variant {
+   err: DeleteOrderError;
+   ok;
+ };
+type Result_20 = 
+ variant {
+   err: DeleteProductError;
+   ok;
+ };
+type Result_2 = 
+ variant {
+   err: UpdateUserError;
+   ok: User;
+ };
+type Result_19 = 
+ variant {
+   err: DeleteUserError;
+   ok;
+ };
+type Result_18 = 
+ variant {
+   err: DeleteVideoError;
+   ok;
+ };
+type Result_17 = 
+ variant {
+   err: DeleteWishlistItemError;
+   ok;
+ };
+type Result_16 = 
+ variant {
+   err: GetCartItemsError;
+   ok: CartItem;
+ };
+type Result_15 = 
+ variant {
+   err: GetCategoryError;
+   ok: Category;
+ };
+type Result_14 = 
+ variant {
+   err: GetContactError;
+   ok: Contact;
+ };
+type Result_13 = 
+ variant {
+   err: GetCourseError;
+   ok: Course;
+ };
+type Result_12 = 
+ variant {
+   err: OrderError;
+   ok: Order;
+ };
+type Result_11 = 
+ variant {
+   err: GetProductError;
+   ok: Product;
+ };
+type Result_10 = 
+ variant {
+   err: GetUserError;
+   ok: User;
+ };
+type Result_1 = 
+ variant {
+   err: UpdateVideoError;
+   ok: Video;
+ };
+type Result = 
+ variant {
+   err: UpdateWishlistItemError;
+   ok: WishlistItem;
+ };
+type Response = 
+ record {
+   body: blob;
+   headers: vec HeaderField;
+   status_code: nat16;
+   streaming_strategy: opt StreamingStrategy;
+ };
+type Request = 
+ record {
+   body: blob;
+   headers: vec HeaderField;
+   method: text;
+   url: text;
+ };
+type ProductId = nat;
+type Product = 
+ record {
+   category: SlugId__1;
+   description: text;
+   id: ProductId;
+   img1: text;
+   img2: text;
+   img3: text;
+   inventory: nat8;
+   price: float64;
+   slug: text;
+   status: text;
+   time_created: Time;
+   time_updated: Time;
+   title: text;
+ };
+type OrderProduct = 
+ record {
+   description: text;
+   id: ProductId;
+   img1: text;
+   price: float64;
+   quantity: nat8;
+   slug: text;
+   title: text;
+ };
+type OrderId__1 = text;
+type OrderId = text;
+type OrderError = 
+ variant {
+   MissingData;
+   OrderNotFound;
+   PaymentAddressAlreadyUsed;
+   UnableToCreate;
+   UnableToUpdate;
+ };
+type Order = 
+ record {
+   awb: text;
+   id: OrderId__1;
+   orderStatus: text;
+   paymentAddress: text;
+   paymentMethod: text;
+   paymentStatus: text;
+   products: vec OrderProduct;
+   shippingAddress: ShippingAddress;
+   shippingAmount: float64;
+   subTotalAmount: float64;
+   timeCreated: Time;
+   timeUpdated: Time;
+   totalAmount: float64;
+   userId: text;
+ };
+type NewVideo = 
+ record {
+   course: text;
+   description: text;
+   img1: text;
+   status: text;
+   title: text;
+   video_url: text;
+ };
+type NewOrder = 
+ record {
+   awb: text;
+   orderStatus: text;
+   paymentAddress: text;
+   paymentMethod: text;
+   paymentStatus: text;
+   products: vec OrderProduct;
+   shippingAddress: ShippingAddress;
+   shippingAmount: float64;
+   subTotalAmount: float64;
+   totalAmount: float64;
+   userId: text;
+ };
+type HeaderField = 
+ record {
+   text;
+   text;
+ };
+type GetVideoError = variant {VideoNotFound;};
+type GetUserError = variant {UserNotFound;};
+type GetProductError = variant {ProductNotFound;};
+type GetCourseError = variant {CourseNotFound;};
+type GetContactError = 
+ variant {
+   ContactNotFound;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type GetCategoryError = variant {CategoryNotFound;};
+type GetCartItemsError = variant {CartItemNotFound;};
+type DeleteWishlistItemError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteVideoError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteUserError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteProductError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteOrderError = 
+ variant {
+   OrderNotFound;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteCourseError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteContactError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteCategoryError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type DeleteCartItemsError = 
+ variant {
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type CreateWishlistItemError = 
+ variant {
+   EmptyProductSlug;
+   UserNotAdmin;
+   UserNotAuthenticated;
+   WishlistItemAlreadyExists;
+ };
+type CreateVideoError = 
+ variant {
+   EmptyTitle;
+   UserNotAdmin;
+   UserNotAuthenticated;
+   VideoAlreadyExists;
+ };
+type CreateUserError = 
+ variant {
+   EmailAlreadyExists;
+   EmptyEmail;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type CreateProductError = 
+ variant {
+   EmptyTitle;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type CreateCourseError = 
+ variant {
+   CourseAlreadyExists;
+   EmptyTitle;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type CreateContactError = 
+ variant {
+   EmptyEmail;
+   EmptyMessage;
+   EmptyName;
+ };
+type CreateCategoryError = 
+ variant {
+   CategoryAlreadyExists;
+   EmptyName;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type CreateCartItemsError = 
+ variant {
+   EmptyProductSlug;
+   ProductSlugAlreadyExists;
+   UserNotAdmin;
+   UserNotAuthenticated;
+ };
+type Course = 
+ record {
+   slug: text;
+   status: text;
+   title: text;
+ };
+type ContactId__1 = text;
+type ContactId = text;
+type Contact = 
+ record {
+   email: text;
+   id: ContactId__1;
+   message: text;
+   name: text;
+   read: bool;
+   time_created: Time;
+   time_updated: Time;
+ };
+type Category = 
+ record {
+   name: text;
+   slug: text;
+   status: text;
+ };
+type CartItem = 
+ record {
+   id: CartId__1;
+   "principal": principal;
+   product_slug: text;
+   qty: int;
+   time_created: Time;
+   time_updated: Time;
+ };
+type CartId__1 = text;
+type CartId = text;
+service : {
+  addtoCartItems: (text, int) -> (Result_33);
+  addtoWishlist: (text) -> (Result_32);
+  createCategory: (text, text) -> (Result_31);
+  createContact: (UserContact) -> (Result_30);
+  createCourse: (text, text) -> (Result_29);
+  createOrder: (NewOrder) -> (Result_12);
+  createProduct: (UserProduct) -> (Result_28);
+  createUser: (text, text, text) -> (Result_27);
+  createVideo: (NewVideo) -> (Result_26);
+  deleteCartItems: (CartId) -> (Result_25);
+  deleteCategory: (SlugId) -> (Result_24);
+  deleteContact: (ContactId) -> (Result_23);
+  deleteCourse: (SlugId) -> (Result_22);
+  deleteOrder: (OrderId) -> (Result_21);
+  deleteProduct: (SlugId) -> (Result_20);
+  deleteUser: (UserId) -> (Result_19);
+  deleteVideo: (SlugId) -> (Result_18);
+  deleteWishlistItems: (WishlistId) -> (Result_17);
+  getCartItems: (CartId) -> (Result_16) query;
+  getCategory: (SlugId) -> (Result_15) query;
+  getContact: (ContactId) -> (Result_14) query;
+  getCourse: (SlugId) -> (Result_13) query;
+  getOrder: (text) -> (Result_12) query;
+  getProduct: (SlugId) -> (Result_11) query;
+  getUser: (UserId) -> (Result_10) query;
+  getVideo: (SlugId) -> (Result_9) query;
+  greet: (text) -> (text) query;
+  http_request: (Request) -> (Response) query;
+  isAdmin: (text) -> (bool);
+  listCartItems: () -> (vec record {
+                              CartId;
+                              CartItem;
+                            }) query;
+  listCategories: () -> (vec record {
+                               SlugId;
+                               Category;
+                             }) query;
+  listContacts: () -> (vec record {
+                             ContactId;
+                             Contact;
+                           }) query;
+  listCourse: () -> (vec record {
+                           SlugId;
+                           Course;
+                         }) query;
+  listOrders: () -> (vec record {
+                           OrderId;
+                           Order;
+                         }) query;
+  listProducts: () -> (vec record {
+                             SlugId;
+                             Product;
+                           }) query;
+  listUsers: () -> (vec record {
+                          UserId;
+                          User;
+                        }) query;
+  listVideos: () -> (vec record {
+                           SlugId;
+                           Video;
+                         }) query;
+  listWishlistItems: () -> (vec record {
+                                  WishlistId;
+                                  WishlistItem;
+                                }) query;
+  updateCartItems: (CartId, int) -> (Result_8);
+  updateCategory: (SlugId, text, text) -> (Result_7);
+  updateContact: (ContactId, bool) -> (Result_6);
+  updateCourse: (SlugId, text, text) -> (Result_5);
+  updateOrderStatus: (OrderId, text) -> (Result_3);
+  updatePaymentStatus: (OrderId, text) -> (Result_3);
+  updateProduct: (SlugId, UserProduct) -> (Result_4);
+  updateTrackingUrl: (OrderId, text) -> (Result_3);
+  updateUser: (UserId) -> (Result_2);
+  updateVideo: (SlugId, NewVideo) -> (Result_1);
+  updateWishlistItems: (WishlistId) -> (Result);
+}
